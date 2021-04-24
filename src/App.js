@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+
+
 import './App.css';
 
 function App() {
+  const [photos, setPhotos] = useState([]);
+  const [apiKey, setapiKey] = useState("lRnpiqlWz8znjm3S0W2g3q_nH-YY_7vQ0vWGDSMyTcw")
+  useEffect(() => {
+    fetch(`https://api.unsplash.com/search/photos?query=london&client_id=${apiKey}`)
+    .then(response => response.json())
+    .then(result =>{
+      console.log(result);
+      setPhotos(result.results)
+    })
+  }, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>YELLOW CLASSs</div>
+      <div className ="photo">
+        {photos.map((item, i) => (
+          <div key ={i}>
+            <img src = {item.urls.small} alt ="noImage"/>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
