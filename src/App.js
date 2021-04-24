@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
-
 import './App.css';
 
 function App() {
   const [photos, setPhotos] = useState([]);
-  const [apiKey, setapiKey] = useState("lRnpiqlWz8znjm3S0W2g3q_nH-YY_7vQ0vWGDSMyTcw")
+  const [apiKey ] = useState("lRnpiqlWz8znjm3S0W2g3q_nH-YY_7vQ0vWGDSMyTcw")
   useEffect(() => {
     fetch(`https://api.unsplash.com/search/photos?query=london&client_id=${apiKey}`)
     .then(response => response.json())
@@ -13,7 +11,7 @@ function App() {
       console.log(result);
       setPhotos(result.results)
     })
-  }, [])
+  }, [apiKey])
   return (
     <div className="App">
     <div>YELLOW CLASSs</div>
